@@ -4,6 +4,7 @@ import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 
 import Todos from './todos';
+import '../node_modules/todomvc-app-css/index.css';
 
 renderWithHotReload(Todos);
 
