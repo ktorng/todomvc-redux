@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import * as actions from './actions';
 import MainSection from './components/MainSection';
 
 
@@ -13,7 +14,7 @@ export class Todos extends Component {
     return (
       <div>
         <section className="todoapp">
-          <MainSection todoList={this.props.todoList} filter={this.props.filter} />
+          <MainSection {...this.props} />
         </section>
       </div>
     );
@@ -27,4 +28,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(Todos);
+export default connect(mapStateToProps, actions)(Todos);
