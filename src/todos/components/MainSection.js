@@ -1,6 +1,7 @@
 import React from 'react';
 
 import TodoItem from './TodoItem';
+import TodoTools from './TodoTools';
 
 export default class MainSection extends React.PureComponent {
   // filter items according to their status
@@ -12,6 +13,15 @@ export default class MainSection extends React.PureComponent {
       );
     }
     return [];
+  }
+
+  getActiveCount() {
+    if (this.props.todoList) {
+      return this.props.todoList
+        .filter(item => item.get('status') === 'active')
+        .size;
+    }
+    return 0;
   }
 
   // check whether an item is completed
@@ -35,6 +45,11 @@ export default class MainSection extends React.PureComponent {
             />
           )}
         </ul>
+        <TodoTools
+          activeCount={this.getActiveCount()}
+          filter={this.props.filter}
+          changeFilter={this.props.changeFilter}
+        />
       </section>
     );
   }

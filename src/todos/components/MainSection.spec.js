@@ -5,7 +5,11 @@ import { List, Map } from 'immutable';
 
 import MainSection from './MainSection';
 
-const { renderIntoDocument, scryRenderedDOMComponentsWithTag } = TestUtils;
+const {
+  renderIntoDocument,
+  findRenderedDOMComponentWithClass,
+  scryRenderedDOMComponentsWithTag
+} = TestUtils;
 
 describe('MainSection', () => {
   const todoList = List.of(
@@ -19,11 +23,11 @@ describe('MainSection', () => {
     const component = renderIntoDocument(
       <MainSection filter={filter} todoList={todoList} />
     );
-    const items = scryRenderedDOMComponentsWithTag(component, 'li');
+    const list = findRenderedDOMComponentWithClass(component, 'todo-list');
 
-    expect(items.length).to.equal(2);
-    expect(items[0].textContent).to.contain('React');
-    expect(items[1].textContent).to.contain('Redux');
+    expect(list.children.length).to.equal(2);
+    expect(list.children[0].textContent).to.contain('React');
+    expect(list.children[1].textContent).to.contain('Redux');
   });
 
   it('renders a list with only the completed items if the filter is completed', () => {
@@ -31,10 +35,10 @@ describe('MainSection', () => {
     const component = renderIntoDocument(
       <MainSection filter={filter} todoList={todoList} />
     );
-    const items = scryRenderedDOMComponentsWithTag(component, 'li');
+    const list = findRenderedDOMComponentWithClass(component, 'todo-list');
 
-    expect(items.length).to.equal(1);
-    expect(items[0].textContent).to.contain('Immutable');
+    expect(list.children.length).to.equal(1);
+    expect(list.children[0].textContent).to.contain('Immutable');
   });
 
   it('renders a list with all of the items', () => {
@@ -42,11 +46,11 @@ describe('MainSection', () => {
     const component = renderIntoDocument(
       <MainSection filter={filter} todoList={todoList} />
     );
-    const items = scryRenderedDOMComponentsWithTag(component, 'li');
+    const list = findRenderedDOMComponentWithClass(component, 'todo-list');
 
-    expect(items.length).to.equal(3);
-    expect(items[0].textContent).to.contain('React');
-    expect(items[1].textContent).to.contain('Redux');
-    expect(items[2].textContent).to.contain('Immutable');
+    expect(list.children.length).to.equal(3);
+    expect(list.children[0].textContent).to.contain('React');
+    expect(list.children[1].textContent).to.contain('Redux');
+    expect(list.children[2].textContent).to.contain('Immutable');
   });
 });

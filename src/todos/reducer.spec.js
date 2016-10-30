@@ -116,4 +116,24 @@ describe('Todos reducers', () => {
     }));
   });
 
+  it('handles CHANGE_FILTER by changing the filter', () => {
+    const initialState = fromJS({
+      todoList: [
+        {id: 1, text: 'React', status: 'active'},
+      ],
+      filter: 'all'
+    });
+    const action = {
+      type: 'CHANGE_FILTER',
+      filter: 'active'
+    }
+    const nextState = reducer(initialState, action);
+    expect(nextState).to.equal(fromJS({
+      todoList: [
+        {id: 1, text: 'React', status: 'active'},
+      ],
+      filter: 'active'
+    }));
+  });
+
 });

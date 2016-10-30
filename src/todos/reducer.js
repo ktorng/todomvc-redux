@@ -8,6 +8,8 @@ export default function(state = Map(), action) {
       return setState(state, action.state);
     case t.TOGGLE_COMPLETE:
       return toggleComplete(state, action.itemId);
+    case t.CHANGE_FILTER:
+      return changeFilter(state, action.filter);
     default:
       return state;
   }
@@ -31,4 +33,8 @@ function toggleComplete(state, itemId) {
 
   // update state to account for modified todo
   return state.update('todoList', todoList => todoList.set(itemIndex, updatedItem));
+}
+
+function changeFilter(state, filter) {
+  return state.set('filter', filter);
 }

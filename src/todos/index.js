@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import * as actions from './actions';
 import MainSection from './components/MainSection';
+import Footer from './components/Footer';
 
 
 export class Todos extends Component {
@@ -16,6 +17,7 @@ export class Todos extends Component {
         <section className="todoapp">
           <MainSection {...this.props} />
         </section>
+        <Footer />
       </div>
     );
   }
