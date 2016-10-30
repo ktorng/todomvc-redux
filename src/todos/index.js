@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { List, Map } from 'immutable';
 
+import MainSection from './components/MainSection';
+
 const todoList = List.of(
   Map({id: 1, text: 'React', status: 'active', editing: false}),
   Map({id: 2, text: 'Redux', status: 'active', editing: false}),
@@ -16,21 +18,7 @@ export default class Todos extends Component {
     return (
       <div>
         <section className="todoapp">
-          <section className="main">
-            <ul className="todo-list">
-              {this.getItems().map(item =>
-                <li className="active" key={item.get('text')}>
-                  <div className="view">
-                    <input type="checkbox" className="toggle" />
-                    <label htmlFor="todo">
-                      {item.get('text')}
-                    </label>
-                    <button className="destroy"></button>
-                  </div>
-                </li>
-              )}
-            </ul>
-          </section>
+          <MainSection todoList={todoList} />
         </section>
       </div>
     );
