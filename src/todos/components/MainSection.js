@@ -29,6 +29,9 @@ export default class MainSection extends React.PureComponent {
               text={item.get('text')}
               isCompleted={this.isCompleted(item)}
               isEditing={item.get('editing')}
+              toggleComplete={this.props.toggleComplete}
+              deleteItem={this.props.deleteItem}
+              editItem={this.props.editItem}
             />
           )}
         </ul>
