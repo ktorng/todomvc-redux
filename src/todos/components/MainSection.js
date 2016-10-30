@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import TodoItem from './TodoItem';
 
-export default class MainSection extends Component {
+export default class MainSection extends React.PureComponent {
   render() {
     return (
       <section className="main">

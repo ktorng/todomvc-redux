@@ -1,6 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class TodoItem extends Component {
+import TodoTextInput from './TodoTextInput';
+
+export default class TodoItem extends React.PureComponent {
   render() {
     return (
       <li className="todo">
@@ -11,6 +13,7 @@ export default class TodoItem extends Component {
           </label>
           <button className="destroy"></button>
         </div>
+        <TodoTextInput />
       </li>
     );
   }
