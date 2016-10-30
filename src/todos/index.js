@@ -1,17 +1,10 @@
 import React, { Component } from 'react';
-import { List, Map } from 'immutable';
+import { connect } from 'react-redux';
 
 import MainSection from './components/MainSection';
 
-const todoList = List.of(
-  Map({ id: 1, text: 'React', status: 'active', editing: false }),
-  Map({ id: 2, text: 'Redux', status: 'active', editing: false }),
-  Map({ id: 3, text: 'Immutable', status: 'completed', editing: false })
-);
 
-const filter = 'all';
-
-export default class Todos extends Component {
+export class Todos extends Component {
   getItems() {
     return todoList || [];
   }
@@ -20,9 +13,18 @@ export default class Todos extends Component {
     return (
       <div>
         <section className="todoapp">
-          <MainSection todoList={todoList} filter={filter} />
+          <MainSection todoList={this.props.todoList} filter={this.props.filter} />
         </section>
       </div>
     );
   }
 };
+
+function mapStateToProps(state) {
+  return {
+    todoList: state.todos.get('todoList'),
+    filter: state.todos.get('filter')
+  };
+}
+
+export default connect(mapStateToProps)(Todos);
