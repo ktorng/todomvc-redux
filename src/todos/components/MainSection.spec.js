@@ -1,12 +1,11 @@
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
-import {expect} from 'chai';
-import {List, Map} from 'immutable';
+import { expect } from 'chai';
+import { List, Map } from 'immutable';
 
 import MainSection from './MainSection';
 
-const {renderIntoDocument,
-       scryRenderedDOMComponentsWithTag} = TestUtils;
+const { renderIntoDocument, scryRenderedDOMComponentsWithTag } = TestUtils;
 
 describe('MainSection', () => {
   const todoList = List.of(

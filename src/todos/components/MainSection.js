@@ -14,6 +14,11 @@ export default class MainSection extends React.PureComponent {
     return [];
   }
 
+  // check whether an item is completed
+  isCompleted(item) {
+    return item.get('status') === 'completed';
+  }
+
   render() {
     return (
       <section className="main">
@@ -22,6 +27,8 @@ export default class MainSection extends React.PureComponent {
             <TodoItem
               key={item.get('text')}
               text={item.get('text')}
+              isCompleted={this.isCompleted(item)}
+              isEditing={item.get('editing')}
             />
           )}
         </ul>
