@@ -16,6 +16,21 @@ export default class TodoTools extends React.PureComponent {
     );
   }
 
+  renderClearButton() {
+    const { completedCount, clearCompleted } = this.props;
+
+    if (completedCount > 0) {
+      return (
+        <button
+          className="clear-completed"
+          onClick={() => clearCompleted()}
+        >
+          Clear Completed
+        </button>
+      );
+    }
+  }
+
   render() {
     const { activeCount } = this.props;
     const itemWord = activeCount === 1 ? 'item' : 'items';
@@ -32,6 +47,7 @@ export default class TodoTools extends React.PureComponent {
             </li>
           )}
         </ul>
+        {this.renderClearButton()}
       </footer>
     );
   }

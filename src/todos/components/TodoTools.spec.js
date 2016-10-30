@@ -36,7 +36,7 @@ describe('TodoTools', () => {
     var cleared = false
     const clearCompleted = () => cleared = true;
     const component = renderIntoDocument(
-      <TodoTools clearCompleted={clearCompleted} />
+      <TodoTools clearCompleted={clearCompleted} completedCount={1} />
     );
     const buttons = scryRenderedDOMComponentsWithTag(component, 'button');
     Simulate.click(buttons[0]);

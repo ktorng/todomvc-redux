@@ -9,3 +9,7 @@ export const changeFilter = (filter) => ({
   type: t.CHANGE_FILTER,
   filter
 });
+
+export const clearCompleted = () => ({
+  type: t.CLEAR_COMPLETED
+});

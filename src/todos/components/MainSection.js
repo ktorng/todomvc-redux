@@ -30,12 +30,16 @@ export default class MainSection extends React.PureComponent {
   }
 
   render() {
+    const activeCount = this.getActiveCount();
+    const completedCount = this.props.todoList.size - activeCount;
+
     return (
       <section className="main">
         <ul className="todo-list">
           {this.getItems().map(item =>
             <TodoItem
-              key={item.get('text')}
+              key={item.get('id')}
+              id={item.get('id')}
               text={item.get('text')}
               isCompleted={this.isCompleted(item)}
               isEditing={item.get('editing')}
@@ -46,9 +50,11 @@ export default class MainSection extends React.PureComponent {
           )}
         </ul>
         <TodoTools
-          activeCount={this.getActiveCount()}
+          activeCount={activeCount}
+          completedCount={completedCount}
           filter={this.props.filter}
           changeFilter={this.props.changeFilter}
+          clearCompleted={this.props.clearCompleted}
         />
       </section>
     );

@@ -10,6 +10,8 @@ export default function(state = Map(), action) {
       return toggleComplete(state, action.itemId);
     case t.CHANGE_FILTER:
       return changeFilter(state, action.filter);
+    case t.CLEAR_COMPLETED:
+      return clearCompleted(state);
     default:
       return state;
   }
@@ -37,4 +39,13 @@ function toggleComplete(state, itemId) {
 
 function changeFilter(state, filter) {
   return state.set('filter', filter);
+}
+
+// filter out completed todos
+function clearCompleted(state) {
+  return state.update('todoList', todoList =>
+    todoList.filterNot(item =>
+      item.get('status') === 'completed'
+    )
+  );
 }
